@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "Project in Reactjs",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+   
+      "start": "parcel index.html"
+    
+    
+    
   },
   "repository": {
     "type": "git",
