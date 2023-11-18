@@ -1,9 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
 //even if you dont put .js extension the following would work
 import Header from "./components/Header";
-
+import RestaurantMenu from "./components/RestaurantMenu";
 import Body from "./components/Body";
 import Error from "./components/Error";
 import {createBrowserRouter,RouterProvider,Outlet} from "react-router-dom";
@@ -44,6 +43,10 @@ const appRouter = createBrowserRouter([
         {
             path:"/contact",
             element:<Contact/>
+        },
+        {
+            path:"/restaurant/:resId",
+            element:<RestaurantMenu />
         },
         
         
