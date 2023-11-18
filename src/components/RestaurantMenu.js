@@ -15,24 +15,33 @@ const RestaurantMenu = () => {
     try {
       const data = await fetch(MENU_URL+resId)
       const json = await data.json();
-      console.log(json);
-      setResInfo(json)
-      console.log(resInfo);
+      //console.log(json.data);
+      setResInfo(json.data)
+      //console.log(resInfo);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
-//   if (resInfo===null)
-//   return <Shimmer/>;
+  if (resInfo===null)
+  return <Shimmer/>;
 
 
 
-// const {name,cuisine,costForTwoMessage}=resInfo?.cards[0]?.card?.card?.info;
-// const {itemCards}=resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
+const {name,cuisines,costForTwoMessage}=resInfo?.cards[0]?.card?.card?.info;
+console.log(resInfo)
+const {itemCards}=resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
+console.log(itemCards);
   return (
     <div className="menu">
-      <h1>Name of Restaurant</h1>
+      <h1>{name}</h1>
+      <h3>{cuisines.join(" ,")}</h3>
+    {itemCards.map((res) => <p key={ res.card.info.id}>{res.card.info.name}</p>)
+
+        
+      
+      
+      }
     </div>
   );
 };
