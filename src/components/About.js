@@ -1,3 +1,6 @@
+import UserClass from "./UserClass"
+
+import User from "./User"
 const About=()=>{
 
 
@@ -8,6 +11,8 @@ const About=()=>{
             <br>
             </br>
         </h1>
+        <User name={"Kartikey_Uniyal"}/>
+        <UserClass name={"Kartikey_Uniyal_class"}/>
         </div>
     )
 }
