@@ -1,4 +1,4 @@
-import React from "react";
+import React,{lazy,Suspense} from "react";
 import ReactDOM from "react-dom/client";
 //even if you dont put .js extension the following would work
 import Header from "./components/Header";
@@ -8,7 +8,8 @@ import Error from "./components/Error";
 import {createBrowserRouter,RouterProvider,Outlet} from "react-router-dom";
 import About from "./components/About";
 import Contact from "./components/Contact"
-
+//import Grocery from "./components/Grocery";
+const Grocery =lazy(()=>import("./components/Grocery"))
 
 
 
@@ -47,6 +48,10 @@ const appRouter = createBrowserRouter([
         {
             path:"/restaurant/:resId",
             element:<RestaurantMenu />
+        },
+        {
+            path:"/grocery",
+            element:<Suspense fallback={<h1>LOADING</h1>}><Grocery/></Suspense>
         },
         
         

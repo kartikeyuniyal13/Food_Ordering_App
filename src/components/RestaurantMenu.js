@@ -1,27 +1,31 @@
 import React, { useEffect,useState } from "react";
-import { MENU_URL } from "../../utils/constants";
+import useRestaurantMenu from "../../utils/useRestaurantMenu";
+
 import { useParams } from "react-router-dom";
 import Shimmer from "./shimmer";
 
 const RestaurantMenu = () => {
   // Destructure resId from the result of useParams
   const { resId } = useParams();
-  const [resInfo,setResInfo]=useState(null)
-  useEffect(() => {
-    fetchMenu();
-  }, []); // Include resId in the dependency array if you want to run the effect when it changes
+  //const [resInfo,setResInfo]=useState(null)
 
-  const fetchMenu = async () => {
-    try {
-      const data = await fetch(MENU_URL+resId)
-      const json = await data.json();
-      //console.log(json.data);
-      setResInfo(json.data)
-      //console.log(resInfo);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+
+  const resInfo=useRestaurantMenu(resId)
+  // useEffect(() => {
+  //   fetchMenu();
+  // }, []); // Include resId in the dependency array if you want to run the effect when it changes
+
+  // const fetchMenu = async () => {
+  //   try {
+  //     const data = await fetch(MENU_URL+resId)
+  //     const json = await data.json();
+  //     //console.log(json.data);
+  //     setResInfo(json.data)
+  //     //console.log(resInfo);
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //   }
+  // };
 
   if (resInfo===null)
   return <Shimmer/>;
@@ -36,9 +40,13 @@ console.log(itemCards);
     <div className="menu">
       <h1>{name}</h1>
       <h3>{cuisines.join(" ,")}</h3>
-    {itemCards.map((res) => <p key={ res.card.info.id}>{res.card.info.name}</p>)
+    {itemCards.map((res) => <p key={ res.card.info.id}>   {res.card.info.name}
+    </p>)
 
-        
+       //const renderedItems = Array.isArray(itemCards)
+  //? itemCards.map((res) => <p key={res.card.info.id}>{res.card.info.name}</p>)
+  //: null;
+ 
       
       
       }
