@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from "react";
-import useRestaurantMenu from "../../utils/useRestaurantMenu";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 import { useParams } from "react-router-dom";
 import Shimmer from "./shimmer";
@@ -33,25 +33,22 @@ const RestaurantMenu = () => {
 
 
 const {name,cuisines,costForTwoMessage}=resInfo?.cards[0]?.card?.card?.info;
-console.log(resInfo)
+console.log("resinfo from restmenu",resInfo)
 const {itemCards}=resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
 console.log(itemCards);
-  return (
-    <div className="menu">
-      <h1>{name}</h1>
-      <h3>{cuisines.join(" ,")}</h3>
-    {itemCards.map((res) => <p key={ res.card.info.id}>   {res.card.info.name}
-    </p>)
+return (
+  <div className="menu">
+    <h1>{name}</h1>
+    <h3>{cuisines.join(" ,")}</h3>
+    
+    {Array.isArray(itemCards) && (
+      itemCards.map((res) => (
+        <p key={res.card.info.id}>{res.card.info.name}</p>
+      ))
+    )}
+  </div>
+);
 
-       //const renderedItems = Array.isArray(itemCards)
-  //? itemCards.map((res) => <p key={res.card.info.id}>{res.card.info.name}</p>)
-  //: null;
- 
-      
-      
-      }
-    </div>
-  );
 };
 
 export default RestaurantMenu;

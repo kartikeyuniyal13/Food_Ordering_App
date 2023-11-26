@@ -19,6 +19,7 @@ const useGetRestaurants = () => {
 
         if (resData) {
           setListOfRes(resData);
+          console.log("list of rest",listOfRes)
         }
       } catch (error) {
         console.error("Error fetching data:", error);
