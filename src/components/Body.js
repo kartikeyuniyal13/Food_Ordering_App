@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
-import RestaurantCard from "./Restuarant";
+import RestaurantCard,{withPromotedLabel} from "./Restuarant";
 import Shimmer from "./shimmer";
 import { Link } from "react-router-dom";
 import useGetRestaurants from "../utils/useGetRestaurants";
 import useOnlineStatus from "../utils/useOnlineStatus";
+
+
+
+
+
+
 const Body = () => {
   const [listOfRes, setListOfRes] = useState([]);
   const [filteredListOfRes, setFilteredListOfRes] = useState([]);
@@ -11,6 +17,8 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const resData = useGetRestaurants();
 console.log(resData)
+
+const RestaurantCardPromoted=withPromotedLabel(RestaurantCard);
 
   useEffect(() => {
     if (resData) {
@@ -78,7 +86,10 @@ console.log(resData)
       <div className="flex flex-wrap bg-pink-50 border-solid border-black">
         {filteredListOfRes.map((restaurant) => (
           <Link key={restaurant.info.id} to={`/restaurant/${restaurant.info.id}`}>
-            <RestaurantCard resData={restaurant} />
+{restaurant?.info?.isOpen?<RestaurantCardPromoted resData={restaurant}/>:<RestaurantCard resData={restaurant} />} 
+
+
+            
           </Link>
         ))}
       </div>
