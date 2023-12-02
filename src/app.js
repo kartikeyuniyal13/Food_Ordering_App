@@ -22,7 +22,7 @@ const AppLayout = () => {
 
             <Header />
 
-            {/*outlet is replaced by corresponding childern*/}
+            {/*outlet is replaced by corresponding childern The <Outlet/> component from react-router-dom is used within the parent route element to indicate where a child route element should be rendered. It picks one of the best elements from the React Router library component called Outlet to render any matching children for a particular route with relative path definitions.*/}
             <Outlet/>
         </div>
     )

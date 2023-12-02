@@ -16,7 +16,7 @@ const Body = () => {
   const [loading, setLoading] = useState(true);
   const [searchText, setSearchText] = useState("");
   const resData = useGetRestaurants();
-console.log(resData)
+//console.log(resData)
 
 const RestaurantCardPromoted=withPromotedLabel(RestaurantCard);
 

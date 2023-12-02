@@ -1,5 +1,6 @@
 import React, { useEffect,useState } from "react";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 
 import { useParams } from "react-router-dom";
 import Shimmer from "./shimmer";
@@ -33,19 +34,26 @@ const RestaurantMenu = () => {
 
 
 const {name,cuisines,costForTwoMessage}=resInfo?.cards[0]?.card?.card?.info;
-console.log("resinfo from restmenu",resInfo)
-const {itemCards}=resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
-console.log(itemCards);
+//console.log("resinfo from restmenu",resInfo)
+//const {itemCards}=resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
+const categories=resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c)=>c.card?.card?.["@type"]==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
+ console.log(categories);
+//cant name a property @type in Js
 return (
-  <div className="menu">
-    <h1>{name}</h1>
-    <h3>{cuisines.join(" ,")}</h3>
+  <div className="text-center">
+    <h1 className="font-bold my-10 text-3xl">{name}</h1>
+    <h3 className="font-bold text-lg">{cuisines.join(" ,")}</h3>
     
-    {Array.isArray(itemCards) && (
-      itemCards.map((res) => (
+    {/* {Array.isArray(category) && (
+      category.map((res) => (
         <p key={res.card.info.id}>{res.card.info.name}</p>
       ))
-    )}
+    )} */}
+
+
+    {
+      categories.map((category)=>(<RestaurantCategory data={category?.card?.card}/>))
+    }
   </div>
 );
 
