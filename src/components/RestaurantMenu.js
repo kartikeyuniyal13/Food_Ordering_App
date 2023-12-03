@@ -9,7 +9,8 @@ const RestaurantMenu = () => {
   // Destructure resId from the result of useParams
   const { resId } = useParams();
   //const [resInfo,setResInfo]=useState(null)
-
+ //const [showItems, setShowItems] = useState(false);
+ const [showIndex,setShowIndex]=useState(null);
 
   const resInfo=useRestaurantMenu(resId)
   // useEffect(() => {
@@ -52,7 +53,12 @@ return (
 
 
     {
-      categories.map((category)=>(<RestaurantCategory key={category?.card?.card.title} data={category?.card?.card}/>))
+      categories.map((category,index)=>(<RestaurantCategory 
+        key={category?.card?.card.title} 
+        data={category?.card?.card}
+        show={index ===showIndex?true:false}
+        setShowIndex={()=>{setShowIndex(index)}}
+        />))
     }
   </div>
 );
